@@ -6,16 +6,19 @@ import ReactDOM from 'react-dom';
 var mqtt = require('mqtt');
 var mqttClient = mqtt.connect(SERVER);
 
+require('../css/index.css');
+require('../css/publisher.css');
 
 class Publisher extends Component {
 
     publishEvent() {
-        mqttClient.publish("buttonPress", "hello");
+        mqttClient.publish("buttonPress", "Alert!");
     }
 
     render() {
         return <div className="publisher">
-            <button onClick={this.publishEvent}>Publish</button>
+            <h1>Event Publisher</h1>
+            <button id="publishButton" onClick={this.publishEvent}>Send Alert!</button>
         </div>;
     }
 }

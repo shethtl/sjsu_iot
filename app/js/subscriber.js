@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 var mqtt = require('mqtt');
 var mqttClient = mqtt.connect(SERVER);
 
+require('../css/index.css');
+require('../css/subscriber.css');
 
 class Subscriber extends Component {
 
@@ -23,9 +25,13 @@ class Subscriber extends Component {
     }
 
     render() {
-        return <ul className="subscriber">
-            {this.state.messages}
-        </ul>;
+        return <div class="subscriber">
+            <h1>Event Subscriber</h1>
+            <p>Alerts recieved:</p>
+            <ul>
+                {this.state.messages}
+            </ul>
+        </div>;
     }
 }
 
