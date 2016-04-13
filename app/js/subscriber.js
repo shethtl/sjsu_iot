@@ -1,41 +1,51 @@
 // const SERVER = 'mqtt://chrishyle.com:1883';
 const SERVER = 'mqtt://test.mosca.io';  // Test
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-var mqtt = require('mqtt');
-var mqttClient = mqtt.connect(SERVER);
-
+// CSS
 require('../css/index.css');
 require('../css/subscriber.css');
 
-class Subscriber extends Component {
+// MQTT stuff
+var mqtt = require('mqtt');
+var mqttClient = mqtt.connect(SERVER);
 
-    state = { messages: [] }
+//
 
-    didRecieveMessage(topic, message) {
-        var messages = this.state.messages;
-        messages.push(<li>{message.toString()}</li>);
-        this.setState({ messages: messages })
+
+function didRecieveMessage(topic, message) {
+    var info = JSON.parse(message); // TODO: error handling
+    if (topic === 'sjsuIOT::userConnected') {
+        showConnectedUser(info);
     }
+    
+    // Log stuff: (make better)
+    var messagesElement = document.getElementById('messages');
+    var messageElement = document.createElement('li')
+    messageElement.innerText = message.toString();
+    messagesElement.appendChild(messageElement);
 
-    componentDidMount() {
-        mqttClient.subscribe('buttonPress');
-        mqttClient.on("message", this.didRecieveMessage.bind(this));
-    }
-
-    render() {
-        return <div class="subscriber">
-            <h1>Event Subscriber</h1>
-            <p>Alerts recieved:</p>
-            <ul>
-                {this.state.messages}
-            </ul>
-        </div>;
-    }
 }
 
-ReactDOM.render(
-    <Subscriber />,
-    document.getElementById('app')
-);
+function showConnectedUser(userInfo) {
+    // 1. Add marker to map
+    // 2. Re-center on marker
+    //
+    // … TODO
+    //
+    debugger;
+    //
+    // https://developers.google.com/maps/documentation/javascript/tutorials/firebase#add-a-marker-when-the-user-clicks-the-map
+    // var marker = new google.maps.Marker({
+    // position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
+  //   map: map
+  // });
+
+}
+
+
+mqttClient.subscribe('sjsuIOT::userConnected');
+mqttClient.on('message', didRecieveMessage);
+
+
+// Create Map
+// … TODO
