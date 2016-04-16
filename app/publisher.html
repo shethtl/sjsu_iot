@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
     <head>
         <meta charset="utf-8">
         <title>MQTT Publisher</title>
@@ -11,7 +12,9 @@
     <body>
         <div class="publisher">
             <h1>Event Publisher</h1>
-            <input type="checkbox" id="shareLocation" />
+            <!-- call 'toggleState' whenever clicked -->
+     <input type="button" id="ShareLocation" value="button" 
+        class="off" onclick="toggleState(this)" />
             <label for="shareLocation">Share Location</label><br />
             <button id="publishButton">Send Alert!</button><br />
             <div id="map"></div>
