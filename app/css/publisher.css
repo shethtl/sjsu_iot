@@ -1,9 +1,24 @@
 button {
-    background-color: red;
+    background-color: green;
     width: 80px;
     height: 30px;
 }
-
+    <!-- define on/off styles -->
+     <style type="text/css">
+      .on  { background:gray; }
+      .off { background:black; }
+     </style>
+      <!-- define the toggle function -->
+     <script language="javascript">
+        function toggleState(item){
+           if(item.className == "on") {
+              item.className="off";
+           } else {
+              item.className="on";
+           }
+        }
+     </script>
+     
 .map {
     display: inline-block;
     width: 300px;
