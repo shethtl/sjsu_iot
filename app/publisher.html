@@ -2,19 +2,97 @@
 <html>
 
     <head>
-        <meta charset="utf-8">
+ <meta charset="utf-8">
         <title>MQTT Publisher</title>
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9bmJ1HJmQzTSGsBPhnwgiUfVMz7rZ4g8 -->
             <!-- &libraries=visualization&callback=initMap"> -->
         <!-- </script> -->
+          <!-- define on/off styles -->
+          <STYLE TYPE="text/css">
+       
+          
+    /* The switch - the box around the slider from https://proto.io/freebies/onoff/ */ 
+.onoffswitch {position: relative; width: 85px; 
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none; top:-45px;
+    right:-140px; 
+}
+.onoffswitch-checkbox { 
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+} </style>
+<STYLE TYPE="text/css">
+ .button{
+ 	display:block;
+ 	background-color: #4CAF50;
+ 	color: white;
+ 	border: none;
+ 	padding: 15px 32px;
+ 	text-align: center;
+ 	text-decoration: none;
+ 	display: inline-block;
+ 	font-size: 16px;
+ border-radius: 8px;}
+ .button{text-align: center;}
+ .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px)
 
+}
+ 
+.map {
+    display: inline-block;
+    width: 300px;    height: 300px;}
+    </STYLE>
     </head>
     <body>
         <div class="publisher">
             <h1>Event Publisher</h1>
-            <input type="checkbox" id="shareLocation" />
-            <label for="shareLocation">Share Location</label><br />
-            <button id="publishButton">Send Alert!</button><br />
+             <!-- call 'toggleState' whenever clicked -->
+             <h3>Share Location:</h3><div class="onoffswitch"><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div> 
+<button class="button">Send Alert!</button>
             <div id="map"></div>
         </div>
       </div>
